@@ -70,7 +70,6 @@ p{margin:0 0 1em}
 .chips li{font-size:13px;color:var(--muted);border:1px solid var(--line);
   border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.02)}
 
-/* Картинка в Hero (ИСПРАВЛЕНО) */
 .hero-media{position:relative;aspect-ratio:16/10;border-radius:var(--radius);
   border:1px solid var(--line);overflow:hidden;
   background:linear-gradient(135deg,#1b222a,#11151a)}
@@ -132,34 +131,7 @@ input:focus,textarea:focus{outline:2px solid rgba(255,77,46,.45);outline-offset:
 .footer-inner p{margin:0 0 6px}
 .site-footer strong{font-weight:700}
 
-/* Адаптив */
-@media (min-width:600px){
-  .grid-services{grid-template-columns:1fr 1fr}
-  .reviews-grid{grid-template-columns:1fr 1fr}
-  .contacts-grid{grid-template-columns:1fr 1fr}
-  .inner-grid { grid-template-columns: 1fr 1fr; }
-}
-
-@media (min-width:860px){
-  .nav{display:flex;gap:22px;font-size:14px;color:var(--muted)}
-  .nav a:hover{color:var(--text)}
-  .header-phone{display:inline}
-}
-
-@media (min-width:900px){
-  .hero { min-height: calc(100vh - 120px); display: flex; align-items: center; padding: 0; }
-  .hero-inner{grid-template-columns:1.1fr .9fr;align-items:center;gap:60px}
-  .hero h1 { font-size: clamp(40px, 5vw, 64px); }
-  .section{padding:80px 0}
-  .grid-services{grid-template-columns:repeat(3,1fr);gap:24px}
-  .reviews-grid{grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:20px;}
-  .contacts-grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-  .booking{grid-template-columns:.9fr 1.1fr;gap:44px;align-items:start}
-  .form{grid-template-columns:1fr 1fr;padding:32px}
-  .inner-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-/* Аккордеон (вынесен в самый конец) */
+/* Аккордеон (базовые стили) */
 .acc-group {
   grid-column: 1 / -1;
   background: var(--surface);
@@ -188,11 +160,40 @@ input:focus,textarea:focus{outline:2px solid rgba(255,77,46,.45);outline-offset:
 .acc-icon { color: var(--accent); font-size: 12px; transition: transform 0.3s ease; }
 .acc-group.active .acc-icon { transform: rotate(180deg); }
 .acc-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+
+/* Сетка внутри аккордеона (по умолчанию 1 колонка) */
 .inner-grid {
   padding: 16px;
   border-top: 1px solid var(--line);
   background: var(--bg);
   grid-template-columns: 1fr;
+}
+
+/* АДАПТИВ (идет строго после базовых стилей) */
+@media (min-width: 600px){
+  .grid-services{grid-template-columns:1fr 1fr}
+  .reviews-grid{grid-template-columns:1fr 1fr}
+  .contacts-grid{grid-template-columns:1fr 1fr}
+  .inner-grid { grid-template-columns: 1fr 1fr; } /* 2 колонки */
+}
+
+@media (min-width: 860px){
+  .nav{display:flex;gap:22px;font-size:14px;color:var(--muted)}
+  .nav a:hover{color:var(--text)}
+  .header-phone{display:inline}
+}
+
+@media (min-width: 900px){
+  .hero { min-height: calc(100vh - 120px); display: flex; align-items: center; padding: 0; }
+  .hero-inner{grid-template-columns:1.1fr .9fr;align-items:center;gap:60px}
+  .hero h1 { font-size: clamp(40px, 5vw, 64px); }
+  .section{padding:80px 0}
+  .grid-services{grid-template-columns:repeat(3,1fr);gap:24px}
+  .reviews-grid{grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:20px;}
+  .contacts-grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .booking{grid-template-columns:.9fr 1.1fr;gap:44px;align-items:start}
+  .form{grid-template-columns:1fr 1fr;padding:32px}
+  .inner-grid { grid-template-columns: repeat(3, 1fr); } /* 3 колонки для ПК */
 }
 </style>
 </head>
@@ -361,20 +362,45 @@ window.SITE_DATA = {
   name: "МКЗ",
   hours: "Пн–Вс, 9:00–19:00",
   phone: "+7 (985) 768-97-27",
-  address: "Сормовский пр., 6, стр. 2, Москва (заезд с Сормовского проезда)",
+  address: "Сормовский пр., 6, стр. 2, Москва",
   mapUrl: "https://yandex.ru/maps/org/mkz/1077677321/",
+  
   services: [
-    { title: "Сварочные работы замена гофры", price: "3500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/4322053/2a000001985188cb0cde85592bd03812f0af/M_height" },
-    { title: "Подшипник передней ступицы Замена", price: "3000 ₽", src: null },
-    { title: "Шрус (пыльник шруса) наружный Замена", price: "2500 ₽", src: null },
-    { title: "Рулевая тяга Замена", price: "2500 ₽", src: null },
-    { title: "Ремень ГРМ Замена", price: "3500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/1356083/2a00000198518899b91cd52b6c308adb1eaa/M_height" },
-    { title: "Сцепление Замена", price: "12000 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/2791887/2a00000198518822c947940babd372fc2546/M_height" },
-    { title: "Замена моторного масла и фильтра ДВС", price: "1200 ₽", src: null },
-    { title: "Колодки тормозные передние Замена", price: "1500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/2773996/2a0000019851884964cb15129db3b2812da3/M_height" },
-    { title: "Заправка кондиционера", price: "3500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/5512660/2a0000019e4fd4fa1bd54366da35d902e975/M_height" },
-    { title: "Ремонт двигателя 4 цилиндра", price: "60000 ₽", src: null }
+    {
+      category: "Подвеска и рулевое",
+      items: [
+        { title: "Подшипник передней ступицы Замена", price: "3000 ₽", src: null },
+        { title: "Шрус (пыльник шруса) наружный Замена", price: "2500 ₽", src: null },
+        { title: "Рулевая тяга Замена", price: "2500 ₽", src: null },
+        { title: "Амортизатор передний Замена", price: "3500 ₽", src: null },
+        { title: "Стойка стабилизатора передней/задней подвески", price: "1000 ₽", src: null }
+      ]
+    },
+    {
+      category: "Двигатель и ГРМ",
+      items: [
+        { title: "Ремень ГРМ Замена", price: "3500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/1356083/2a00000198518899b91cd52b6c308adb1eaa/M_height" },
+        { title: "Сцепление Замена", price: "12000 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/2791887/2a00000198518822c947940babd372fc2546/M_height" },
+        { title: "Сварочные работы замена гофры", price: "3500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/4322053/2a000001985188cb0cde85592bd03812f0af/M_height" },
+        { title: "Замена моторного масла и фильтра ДВС", price: "1200 ₽", src: null }
+      ]
+    },
+    {
+      category: "Тормозная система",
+      items: [
+        { title: "Колодки тормозные передние Замена", price: "1500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/2773996/2a0000019851884964cb15129db3b2812da3/M_height" },
+        { title: "Диски тормозные с колодками Замена", price: "3000 ₽", src: null }
+      ]
+    },
+    {
+      category: "Прочее",
+      items: [
+        { title: "Заправка кондиционера", price: "3500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/5512660/2a0000019e4fd4fa1bd54366da35d902e975/M_height" },
+        { title: "Свечи зажигания Замена", price: "1000 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/2760763/2a0000019851899526aa62c6a8d01089c1fe/M_height" }
+      ]
+    }
   ],
+  
   reviews: [
     { stars: 5.0, date: "28 июня 2026", text: "Приехала с проблемой в подвеске. Все подъемники были заняты, но услышав проблему, сразу откликнулись. Нашли проблему с креплением суппорта. Сделали всё отлично." },
     { stars: 5.0, date: "05 марта 2026", text: "Сервис впечатлил: просторный, светлый и очень чистый. Главный плюс — прозрачность. Можно присутствовать при ремонте, мастер всё покажет и объяснит." },
@@ -388,7 +414,8 @@ window.SITE_DATA = {
   var q = function (s) { return document.querySelector(s); };
   var all = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
   var show = function (n, on) { if (n) n.hidden = !on; };
-  // Применяем цветовую тему (если она задана в data.js)
+
+  // 1. Применяем цветовую тему (если она задана в data.js)
   if (d.theme) {
     var root = document.documentElement;
     for (var key in d.theme) {
@@ -397,16 +424,18 @@ window.SITE_DATA = {
       }
     }
   }
-  // Название
-  if (d.name){
-     all('[data-name]').forEach(function (n) { n.textContent = d.name; });
-    document.title = d.name + '- демо-концепт лендинга';
-    var logo = document.querySelector('[data-logo]');
+
+  // 2. Название, Title и Логотип
+  if (d.name) {
+    all('[data-name]').forEach(function (n) { n.textContent = d.name; });
+    document.title = d.name + ' — демо-концепт лендинга';
+    var logo = q('[data-logo]');
     if (logo) {
       logo.textContent = d.name.charAt(0).toUpperCase();
     }
   }
-  // Часы работы
+
+  // 3. Часы работы
   var hours = d.hours || null;
   all('[data-hours]').forEach(function (n) { n.textContent = hours || ''; });
   show(q('[data-hours-wrap]'), !!hours);
@@ -416,7 +445,7 @@ window.SITE_DATA = {
   var chip = q('[data-hours-chip]');
   if (chip) { chip.textContent = hours || ''; show(chip, !!hours); }
 
-  // Телефон — нет данных → блок скрыт
+  // 4. Телефон
   var phone = d.phone || null;
   all('[data-phone]').forEach(function (n) {
     if (!phone) { show(n.closest('[data-phone-card]') || n, false); return; }
@@ -425,27 +454,33 @@ window.SITE_DATA = {
   });
   show(q('[data-phone-card]'), !!phone);
 
-  // Адрес — нет данных → блок скрыт
+  // 5. Адрес
   var address = d.address || null;
   all('[data-address]').forEach(function (n) { n.textContent = address || ''; });
   show(q('[data-address-card]'), !!address);
 
-  // Карта — только реальная ссылка
+  // 6. Карта
   all('[data-map]').forEach(function (a) {
     if (d.mapUrl) a.href = d.mapUrl; else show(a, false);
   });
 
-  // Услуги (фото + название + цена)
-    // Услуги (фото + название + цена)
+  // 7. Услуги (с авто-аккордеоном)
   var services = d.services || [];
   var sGrid = document.getElementById('services-grid');
   show(document.getElementById('services'), services.length > 0);
 
-  // Проверяем, сгруппированы ли услуги (есть ли ключ items)
   var isGrouped = services.length > 0 && services[0].items;
 
+  // Если услуг больше 8, но они не разбиты по категориям — упаковываем в один аккордеон
+  if (!isGrouped && services.length > 8) {
+    services = [{
+      category: "Все услуги",
+      items: services
+    }];
+    isGrouped = true;
+  }
+
   if (isGrouped) {
-    // РЕНДЕР АККОРДЕОНА (по категориям)
     services.forEach(function (group) {
       var accGroup = document.createElement('div');
       accGroup.className = 'acc-group';
@@ -453,7 +488,7 @@ window.SITE_DATA = {
       var header = document.createElement('button');
       header.type = 'button';
       header.className = 'acc-header';
-      header.innerHTML = `<span>${group.category}</span><span class="acc-icon">▼</span>`;
+      header.innerHTML = '<span>' + group.category + '</span><span class="acc-icon">▼</span>';
 
       var content = document.createElement('div');
       content.className = 'acc-content';
@@ -470,24 +505,21 @@ window.SITE_DATA = {
       accGroup.appendChild(content);
       sGrid.appendChild(accGroup);
 
-      // Логика раскрытия
       header.addEventListener('click', function () {
         accGroup.classList.toggle('active');
-         if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        if (content.style.maxHeight && content.style.maxHeight !== '0px') {
           content.style.maxHeight = '0px';
         } else {
-          content.style.maxHeight = '2500px'; // Даем много места, чтобы все фото прогрузились
+          content.style.maxHeight = '2500px'; 
         }
       });
     });
   } else {
-    // РЕНДЕР ОБЫЧНОЙ СЕТКИ (для остальных сайтов)
     services.forEach(function (s) {
       sGrid.appendChild(createServiceCard(s));
     });
   }
 
-  // Вспомогательная функция для создания карточки
   function createServiceCard(s) {
     var card = document.createElement('article');
     card.className = 'card';
@@ -535,8 +567,7 @@ window.SITE_DATA = {
     return card;
   }
 
-  // Отзывы (пересказ, без имён)
-    // Отзывы (пересказ, без имён)
+  // 8. Отзывы
   var reviews = d.reviews || [];
   var rGrid = document.getElementById('reviews-grid');
   show(document.getElementById('reviews'), reviews.length > 0);
@@ -545,7 +576,6 @@ window.SITE_DATA = {
     var card = document.createElement('article');
     card.className = 'review' + (r.stars >= 4 ? '' : ' low');
 
-    // Шапка отзыва: звезды и дата
     var header = document.createElement('div');
     header.className = 'review-header';
 
@@ -575,6 +605,17 @@ window.SITE_DATA = {
 
     rGrid.appendChild(card);
   });
+
+  // 9. Демо-форма
+  var form = q('.form');
+  if (form) form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var st = q('.form-status');
+    if (st) { st.hidden = false; st.textContent = 'Это демо: данные не отправляются.'; }
+  });
+
+  // 10. Год в подвале
+  all('[data-year]').forEach(function (n) { n.textContent = new Date().getFullYear(); });
 })();
 </script>
 </body>
