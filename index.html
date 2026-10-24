@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#0c0e11">
+  <title>демо-концепт лендинга</title>
+  <meta name="description" content="Демо-концепт лендинга автосервиса. Не официальный сайт.">
+  <style>
+:root{
+  --bg:#0c0e11; --surface:#14181d; --surface-2:#1a2027; --line:#252c35;
+  --text:#e9ecef; --muted:#98a1ac; --accent:#ff4d2e; --accent-2:#ff8552;
+  --radius:16px; --max:1440px;
+  --demo-bg: #2a1207; --demo-text: #ffb59f; --demo-border: #48200f;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0 0 .5em;line-height:1.15;letter-spacing:-.02em}
+p{margin:0 0 1em}
+[hidden]{display:none!important}
+.container{width:100%;max-width:var(--max);margin:0 auto;padding:0 16px}
+.muted{color:var(--muted)}
+.note{color:var(--muted);font-size:13px;margin-top:16px}
+.accent{color:var(--accent)}
+
+/* демо-плашка */
+.demo-bar{background:var(--demo-bg);color:var(--demo-text);font-size:12px;line-height:1.4;
+  text-align:center;padding:8px 12px;border-bottom:1px solid var(--demo-border);letter-spacing:.2px}
+
+/* хедер */
+.site-header{position:sticky;top:0;z-index:40;background:rgba(12,14,17,.86);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.2px}
+.logo{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--bg);font-weight:800}
+.brand-text{display:flex;flex-direction:column;line-height:1.2}
+.brand-text small{font-size:11px;font-weight:500;color:var(--muted)}
+.nav{display:none}
+.header-phone{display:none;font-size:14px;font-weight:600;color:var(--muted)}
+.header-actions{display:flex;align-items:center;gap:14px}
+
+/* кнопки */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 22px;border-radius:12px;border:1px solid transparent;
+  background:var(--accent);color:#180a05;font:inherit;font-weight:700;cursor:pointer;
+  transition:background .15s ease,transform .12s ease}
+.btn:hover{background:var(--accent-2)}
+.btn:active{transform:translateY(1px)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{padding:10px 16px;font-size:14px;border-radius:10px}
+
+/* hero */
+.hero{padding:36px 0 44px;background:
+  radial-gradient(900px 380px at 85% -10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 62%),
+  radial-gradient(700px 300px at -10% 110%, color-mix(in srgb, var(--accent-2) 8%, transparent), transparent 62%)}
+.hero-inner{display:grid;gap:28px}
+.eyebrow{margin:0 0 10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-size:clamp(30px,8vw,54px);margin:0 0 14px}
+.lead{color:var(--muted);font-size:17px;max-width:46ch}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 18px}
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0}
+.chips li{font-size:13px;color:var(--muted);border:1px solid var(--line);
+  border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.02)}
+
+/* Картинка в Hero (ИСПРАВЛЕНО) */
+.hero-media{position:relative;aspect-ratio:16/10;border-radius:var(--radius);
+  border:1px solid var(--line);overflow:hidden;
+  background:linear-gradient(135deg,#1b222a,#11151a)}
+.hero-img {width: 100%; height: 100%; display: block;}
+
+/* секции */
+.section{padding:44px 0;border-top:1px solid var(--line)}
+.section h2{font-size:clamp(22px,5vw,32px)}
+.section-head{max-width:60ch;margin-bottom:22px}
+.section-head p{margin:0}
+
+/* услуги: карточка с фото */
+.grid-services{display:grid;gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .15s ease,transform .15s ease}
+.card:hover{border-color:#39424d;transform:translateY(-2px)}
+.card-photo{aspect-ratio:4/3;overflow:hidden;background:#151a20;position:relative}
+.card-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.card-photo.no-photo{display:grid;place-items:center;color:#5d6771;font-size:13px;
+  background:repeating-linear-gradient(45deg,#151a20,#151a20 10px,#12161b 10px,#12161b 20px)}
+.card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-body h3{font-size:15px;margin:0;line-height:1.3;letter-spacing:-.01em}
+.card-body h3.placeholder{color:var(--muted);font-weight:600}
+.card-body .price{margin:0;font-weight:700;font-size:17px;margin-top:auto}
+.card-body .price.empty{color:#5d6771;font-weight:600}
+
+/* отзывы */
+.reviews-grid{display:grid;gap:12px}
+.review{background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:18px}
+.review .stars{margin:0 0 8px;font-size:14px;letter-spacing:2px;color:var(--accent)}
+.review .stars .off{color:#3a434d}
+.review.low .stars{color:#8b96a1}
+.review p{margin:0;font-size:15px;line-height: 1.6;color:var(--text);white-space: pre-wrap}
+
+/* запись */
+.booking{display:grid;gap:24px}
+.form{display:grid;gap:12px;grid-template-columns:1fr;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.form label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
+input,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;
+  padding:12px 14px;color:var(--text);font:inherit}
+input:focus,textarea:focus{outline:2px solid rgba(255,77,46,.45);outline-offset:1px;border-color:var(--accent)}
+.full{grid-column:1/-1}
+.form-status{margin:0;font-size:13px;color:var(--accent-2)}
+
+/* контакты */
+.contacts-grid{display:grid;gap:12px;grid-template-columns:1fr}
+.contact-card{background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:18px}
+.contact-card h3{font-size:13px;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--muted);font-weight:600;margin:0 0 8px}
+.contact-card p{margin:0}
+.contact-card a{color:var(--accent-2)}
+
+/* футер */
+.site-footer{border-top:1px solid var(--line);padding:26px 0 34px;font-size:13px}
+.footer-inner p{margin:0 0 6px}
+.site-footer strong{font-weight:700}
+
+/* Адаптив */
+@media (min-width:600px){
+  .grid-services{grid-template-columns:1fr 1fr}
+  .reviews-grid{grid-template-columns:1fr 1fr}
+  .contacts-grid{grid-template-columns:1fr 1fr}
+  .inner-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width:860px){
+  .nav{display:flex;gap:22px;font-size:14px;color:var(--muted)}
+  .nav a:hover{color:var(--text)}
+  .header-phone{display:inline}
+}
+
+@media (min-width:900px){
+  .hero { min-height: calc(100vh - 120px); display: flex; align-items: center; padding: 0; }
+  .hero-inner{grid-template-columns:1.1fr .9fr;align-items:center;gap:60px}
+  .hero h1 { font-size: clamp(40px, 5vw, 64px); }
+  .section{padding:80px 0}
+  .grid-services{grid-template-columns:repeat(3,1fr);gap:24px}
+  .reviews-grid{grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:20px;}
+  .contacts-grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .booking{grid-template-columns:.9fr 1.1fr;gap:44px;align-items:start}
+  .form{grid-template-columns:1fr 1fr;padding:32px}
+  .inner-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Аккордеон (вынесен в самый конец) */
+.acc-group {
+  grid-column: 1 / -1;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.acc-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+}
+.acc-header:hover { background: var(--surface-2); }
+.acc-icon { color: var(--accent); font-size: 12px; transition: transform 0.3s ease; }
+.acc-group.active .acc-icon { transform: rotate(180deg); }
+.acc-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+.inner-grid {
+  padding: 16px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+  grid-template-columns: 1fr;
+}
+</style>
+</head>
+<body>
+  <div class="demo-bar" role="note">Демо-концепт, не официальный сайт, удалим по первой просьбе</div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <span class="logo" data-logo aria-hidden="true"></span>
+        <span class="brand-text">
+          <span data-name>Автоспас</span>
+          <small data-hours-wrap>Ежедневно, <span data-hours></span></small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#services">Услуги</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#booking">Запись</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="header-phone" data-phone hidden></a>
+        <a class="btn btn-sm" href="#booking">Записаться</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <!-- ТЕКСТОВЫЙ БЛОК (ТОЛЬКО ОДИН!) -->
+        <div class="hero-text">
+          <p class="eyebrow">Автосервис</p>
+          <h1><span data-name>Автоспас</span> — <span class="accent">запись на обслуживание</span></h1>
+          <p class="lead" data-hours-line>Работаем <span data-hours></span>.</p>
+          <div class="actions">
+            <a class="btn" href="#booking">Записаться</a>
+            <a class="btn btn-ghost" data-map href="#" target="_blank" rel="noopener">Как добраться</a>
+          </div>
+          <ul class="chips">
+            <li data-hours-chip hidden></li>
+            <li>Демо-концепт</li>
+          </ul>
+        </div>
+        
+        <!-- БЛОК С КАРТИНКОЙ -->
+        <div class="hero-media">
+          <svg class="hero-img" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color: var(--surface-2)"/>
+                <stop offset="100%" style="stop-color: var(--bg)"/>
+              </linearGradient>
+              <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color: var(--accent)"/>
+                <stop offset="100%" style="stop-color: var(--accent-2)"/>
+              </linearGradient>
+            </defs>
+            
+            <rect width="100%" height="100%" style="fill: url(#bg)"/>
+            <path d="M0,100 L800,100 M0,200 L800,200 M0,300 L800,300 M0,400 L800,400 M100,0 L100,500 M200,0 L200,500 M300,0 L300,500 M400,0 L400,500 M500,0 L500,500 M600,0 L600,500 M700,0 L700,500" style="stroke: var(--line); stroke-width: 1; opacity: 0.4"/>
+            
+            <g transform="translate(400, 250)">
+              <circle r="180" style="fill: none; stroke: var(--line); stroke-width: 2"/>
+              <circle r="130" style="fill: none; stroke: url(#accent); stroke-width: 8; opacity: 0.9"/>
+              <circle r="90" style="fill: none; stroke: var(--surface-2); stroke-width: 4"/>
+              <circle r="25" style="fill: url(#accent)"/>
+              
+              <line x1="0" y1="-130" x2="0" y2="-90" style="stroke: url(#accent); stroke-width: 10; stroke-linecap: round"/>
+              <line x1="0" y1="130" x2="0" y2="90" style="stroke: url(#accent); stroke-width: 10; stroke-linecap: round"/>
+              <line x1="-130" y1="0" x2="-90" y2="0" style="stroke: url(#accent); stroke-width: 10; stroke-linecap: round"/>
+              <line x1="130" y1="0" x2="90" y2="0" style="stroke: url(#accent); stroke-width: 10; stroke-linecap: round"/>
+              
+              <line x1="-92" y1="-92" x2="-63" y2="-63" style="stroke: var(--line); stroke-width: 10; stroke-linecap: round"/>
+              <line x1="92" y1="92" x2="63" y2="63" style="stroke: var(--line); stroke-width: 10; stroke-linecap: round"/>
+              <line x1="-92" y1="92" x2="-63" y2="63" style="stroke: var(--line); stroke-width: 10; stroke-linecap: round"/>
+              <line x1="92" y1="-92" x2="63" y2="-63" style="stroke: var(--line); stroke-width: 10; stroke-linecap: round"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Услуги и цены</h2>
+          <p class="muted">Цены — из прайса сервиса. Фото — иллюстрации к услугам.</p>
+        </div>
+        <div class="grid-services" id="services-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <h2>Отзывы</h2>
+          <p class="muted">Пересказ отзывов клиентов: формулировки обобщены, имена авторов и сотрудников не публикуются.</p>
+        </div>
+        <div class="reviews-grid" id="reviews-grid"></div>
+        <p class="note">В отзывах с оценкой ниже 5★ — то, что клиенты просили поправить. Мы не скрываем критику.</p>
+      </div>
+    </section>
+
+    <section class="section" id="booking">
+      <div class="container booking">
+        <div class="booking-text">
+          <h2>Запись на сервис</h2>
+          <p class="muted">Демо-форма: заявки не отправляются и никуда не сохраняются.</p>
+          <p class="muted" data-hours-line2>Режим работы: <span data-hours></span>.</p>
+        </div>
+        <form class="form" novalidate>
+          <label>Имя
+            <input type="text" name="name" placeholder="Как к вам обращаться" autocomplete="name">
+          </label>
+          <label>Телефон
+            <input type="tel" name="phone" placeholder="+7 ..." autocomplete="tel">
+          </label>
+          <label class="full">Комментарий
+            <textarea name="comment" rows="3" placeholder="Марка авто, что нужно сделать"></textarea>
+          </label>
+          <button class="btn full" type="submit">Отправить заявку</button>
+          <p class="form-status full" role="status" hidden>Это демо: данные не отправляются.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="contacts">
+      <div class="container">
+        <h2>Контакты</h2>
+        <div class="contacts-grid">
+          <div class="contact-card" data-hours-card>
+            <h3>Режим работы</h3>
+            <p data-hours></p>
+          </div>
+          <div class="contact-card" data-address-card hidden>
+            <h3>Адрес</h3>
+            <p data-address></p>
+          </div>
+          <div class="contact-card" data-phone-card hidden>
+            <h3>Телефон</h3>
+            <p><a data-phone></a></p>
+          </div>
+          <div class="contact-card">
+            <h3>На карте</h3>
+            <p><a data-map href="#" target="_blank" rel="noopener">Открыть в Яндекс.Картах</a></p>
+          </div>
+        </div>
+        <p class="note">Адрес и телефон в демо не указаны — этих данных нет в исходнике.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p><strong data-name>Автоспас</strong> · <span data-hours></span></p>
+      <p class="muted">Демо-концепт, не официальный сайт, удалим по первой просьбе. <span data-year></span></p>
+    </div>
+  </footer>
+
+  <script>
+window.SITE_DATA = {
+  name: "МКЗ",
+  hours: "Пн–Вс, 9:00–19:00",
+  phone: "+7 (985) 768-97-27",
+  address: "Сормовский пр., 6, стр. 2, Москва (заезд с Сормовского проезда)",
+  mapUrl: "https://yandex.ru/maps/org/mkz/1077677321/",
+  services: [
+    { title: "Сварочные работы замена гофры", price: "3500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/4322053/2a000001985188cb0cde85592bd03812f0af/M_height" },
+    { title: "Подшипник передней ступицы Замена", price: "3000 ₽", src: null },
+    { title: "Шрус (пыльник шруса) наружный Замена", price: "2500 ₽", src: null },
+    { title: "Рулевая тяга Замена", price: "2500 ₽", src: null },
+    { title: "Ремень ГРМ Замена", price: "3500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/1356083/2a00000198518899b91cd52b6c308adb1eaa/M_height" },
+    { title: "Сцепление Замена", price: "12000 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/2791887/2a00000198518822c947940babd372fc2546/M_height" },
+    { title: "Замена моторного масла и фильтра ДВС", price: "1200 ₽", src: null },
+    { title: "Колодки тормозные передние Замена", price: "1500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/2773996/2a0000019851884964cb15129db3b2812da3/M_height" },
+    { title: "Заправка кондиционера", price: "3500 ₽", src: "https://avatars.mds.yandex.net/get-sprav-products/5512660/2a0000019e4fd4fa1bd54366da35d902e975/M_height" },
+    { title: "Ремонт двигателя 4 цилиндра", price: "60000 ₽", src: null }
+  ],
+  reviews: [
+    { stars: 5.0, date: "28 июня 2026", text: "Приехала с проблемой в подвеске. Все подъемники были заняты, но услышав проблему, сразу откликнулись. Нашли проблему с креплением суппорта. Сделали всё отлично." },
+    { stars: 5.0, date: "05 марта 2026", text: "Сервис впечатлил: просторный, светлый и очень чистый. Главный плюс — прозрачность. Можно присутствовать при ремонте, мастер всё покажет и объяснит." },
+    { stars: 3.0, date: "23 апреля 2026", text: "Регулярно посещаю сервис. Цена за год выросла в два раза. Замена масла с фильтрами обошлась 3300, было 1500." }
+  ]
+};
+</script>
+  <script>
+(function () {
+  var d = window.SITE_DATA || {};
+  var q = function (s) { return document.querySelector(s); };
+  var all = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var show = function (n, on) { if (n) n.hidden = !on; };
+  // Применяем цветовую тему (если она задана в data.js)
+  if (d.theme) {
+    var root = document.documentElement;
+    for (var key in d.theme) {
+      if (d.theme.hasOwnProperty(key)) {
+        root.style.setProperty('--' + key, d.theme[key]);
+      }
+    }
+  }
+  // Название
+  if (d.name){
+     all('[data-name]').forEach(function (n) { n.textContent = d.name; });
+    document.title = d.name + '- демо-концепт лендинга';
+    var logo = document.querySelector('[data-logo]');
+    if (logo) {
+      logo.textContent = d.name.charAt(0).toUpperCase();
+    }
+  }
+  // Часы работы
+  var hours = d.hours || null;
+  all('[data-hours]').forEach(function (n) { n.textContent = hours || ''; });
+  show(q('[data-hours-wrap]'), !!hours);
+  show(q('[data-hours-card]'), !!hours);
+  show(q('[data-hours-line]'), !!hours);
+  show(q('[data-hours-line2]'), !!hours);
+  var chip = q('[data-hours-chip]');
+  if (chip) { chip.textContent = hours || ''; show(chip, !!hours); }
+
+  // Телефон — нет данных → блок скрыт
+  var phone = d.phone || null;
+  all('[data-phone]').forEach(function (n) {
+    if (!phone) { show(n.closest('[data-phone-card]') || n, false); return; }
+    n.textContent = phone;
+    if (n.tagName === 'A') n.href = 'tel:' + phone.replace(/[^\d+]/g, '');
+  });
+  show(q('[data-phone-card]'), !!phone);
+
+  // Адрес — нет данных → блок скрыт
+  var address = d.address || null;
+  all('[data-address]').forEach(function (n) { n.textContent = address || ''; });
+  show(q('[data-address-card]'), !!address);
+
+  // Карта — только реальная ссылка
+  all('[data-map]').forEach(function (a) {
+    if (d.mapUrl) a.href = d.mapUrl; else show(a, false);
+  });
+
+  // Услуги (фото + название + цена)
+    // Услуги (фото + название + цена)
+  var services = d.services || [];
+  var sGrid = document.getElementById('services-grid');
+  show(document.getElementById('services'), services.length > 0);
+
+  // Проверяем, сгруппированы ли услуги (есть ли ключ items)
+  var isGrouped = services.length > 0 && services[0].items;
+
+  if (isGrouped) {
+    // РЕНДЕР АККОРДЕОНА (по категориям)
+    services.forEach(function (group) {
+      var accGroup = document.createElement('div');
+      accGroup.className = 'acc-group';
+
+      var header = document.createElement('button');
+      header.type = 'button';
+      header.className = 'acc-header';
+      header.innerHTML = `<span>${group.category}</span><span class="acc-icon">▼</span>`;
+
+      var content = document.createElement('div');
+      content.className = 'acc-content';
+
+      var innerGrid = document.createElement('div');
+      innerGrid.className = 'grid-services inner-grid';
+
+      group.items.forEach(function (s) {
+        innerGrid.appendChild(createServiceCard(s));
+      });
+
+      content.appendChild(innerGrid);
+      accGroup.appendChild(header);
+      accGroup.appendChild(content);
+      sGrid.appendChild(accGroup);
+
+      // Логика раскрытия
+      header.addEventListener('click', function () {
+        accGroup.classList.toggle('active');
+         if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+          content.style.maxHeight = '0px';
+        } else {
+          content.style.maxHeight = '2500px'; // Даем много места, чтобы все фото прогрузились
+        }
+      });
+    });
+  } else {
+    // РЕНДЕР ОБЫЧНОЙ СЕТКИ (для остальных сайтов)
+    services.forEach(function (s) {
+      sGrid.appendChild(createServiceCard(s));
+    });
+  }
+
+  // Вспомогательная функция для создания карточки
+  function createServiceCard(s) {
+    var card = document.createElement('article');
+    card.className = 'card';
+
+    var photo = document.createElement('div');
+    photo.className = 'card-photo';
+    if (s.src) {
+      var img = document.createElement('img');
+      img.src = s.src;
+      img.alt = s.title || '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.onerror = function () {
+        img.remove();
+        photo.classList.add('no-photo');
+        photo.textContent = 'Фото недоступно';
+      };
+      photo.appendChild(img);
+    } else {
+      photo.classList.add('no-photo');
+      photo.textContent = 'Фото уточняется';
+    }
+    card.appendChild(photo);
+
+    var body = document.createElement('div');
+    body.className = 'card-body';
+
+    var h = document.createElement('h3');
+    h.textContent = s.title || 'Услуга уточняется';
+    if (!s.title) h.classList.add('placeholder');
+    body.appendChild(h);
+
+    var price = document.createElement('p');
+    price.className = 'price';
+    if (s.price != null) {
+      price.textContent = s.price;
+    } else {
+      price.classList.add('empty');
+      price.textContent = '—';
+      price.title = 'Нет данных о цене';
+    }
+    body.appendChild(price);
+
+    card.appendChild(body);
+    return card;
+  }
+
+  // Отзывы (пересказ, без имён)
+    // Отзывы (пересказ, без имён)
+  var reviews = d.reviews || [];
+  var rGrid = document.getElementById('reviews-grid');
+  show(document.getElementById('reviews'), reviews.length > 0);
+
+  reviews.forEach(function (r) {
+    var card = document.createElement('article');
+    card.className = 'review' + (r.stars >= 4 ? '' : ' low');
+
+    // Шапка отзыва: звезды и дата
+    var header = document.createElement('div');
+    header.className = 'review-header';
+
+    var stars = document.createElement('p');
+    stars.className = 'stars';
+    stars.setAttribute('aria-label', 'Оценка: ' + r.stars + ' из 5');
+    for (var i = 0; i < 5; i++) {
+      var st = document.createElement('span');
+      st.textContent = '★';
+      if (i >= r.stars) { st.className = 'off'; st.setAttribute('aria-hidden', 'true'); }
+      stars.appendChild(st);
+    }
+    header.appendChild(stars);
+
+    if (r.date) {
+      var dateSpan = document.createElement('span');
+      dateSpan.className = 'review-date';
+      dateSpan.textContent = r.date;
+      header.appendChild(dateSpan);
+    }
+
+    card.appendChild(header);
+
+    var p = document.createElement('p');
+    p.textContent = r.text;
+    card.appendChild(p);
+
+    rGrid.appendChild(card);
+  });
+})();
+</script>
+</body>
+</html>
